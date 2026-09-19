@@ -4,8 +4,8 @@ namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Str;
+use Intervention\Image\Laravel\Facades\Image;
 
 class ImageService
 {
@@ -14,16 +14,16 @@ class ImageService
      */
     public function compressAndStore(UploadedFile $file, string $directory = 'products'): string
     {
-        $filename = Str::random(40) . '.webp';
-        
+        $filename = Str::random(40).'.webp';
+
         $image = Image::read($file);
-        
+
         $image->scaleDown(width: 1200);
-        
+
         $path = "{$directory}/{$filename}";
-        
+
         Storage::disk('public')->put($path, (string) $image->toWebp(80));
-        
+
         return $path;
     }
 
@@ -33,16 +33,16 @@ class ImageService
     public function generateThumbnail(string $imagePath): string
     {
         $fullPath = storage_path("app/public/{$imagePath}");
-        
+
         $pathInfo = pathinfo($imagePath);
-        $thumbPath = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '_thumb.' . $pathInfo['extension'];
-        
+        $thumbPath = $pathInfo['dirname'].'/'.$pathInfo['filename'].'_thumb.'.$pathInfo['extension'];
+
         $image = Image::read($fullPath);
-        
+
         $image->cover(400, 300);
-        
+
         Storage::disk('public')->put($thumbPath, (string) $image->toWebp(80)); // Encode correctly or just use default format
-        
+
         return $thumbPath;
     }
 

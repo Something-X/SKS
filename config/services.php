@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'google_sheets' => [
+        'apps_script_url' => env('GOOGLE_SHEETS_APPS_SCRIPT_URL'),
+    ],
+
 ];

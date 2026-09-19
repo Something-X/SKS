@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
@@ -28,7 +28,7 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        $key = 'login.' . $request->ip();
+        $key = 'login.'.$request->ip();
 
         if (RateLimiter::tooManyAttempts($key, 5)) {
             return back()->withErrors([
@@ -47,6 +47,7 @@ class AuthController extends Controller
             }
 
             Auth::logout();
+
             return back()->withErrors([
                 'email' => 'You do not have administrative access.',
             ]);

@@ -13,6 +13,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $name = fake()->randomElement(['Mirrorless', 'DSLR', 'Lensa', 'Drone', 'Lighting', 'Aksesoris']);
+
         return [
             'name' => $name,
             'slug' => Str::slug($name),

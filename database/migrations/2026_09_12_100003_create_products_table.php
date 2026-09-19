@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('is_featured')->default(false);
             $table->timestamps();
             $table->softDeletes();
-            
+
             $table->index('category_id');
             $table->index('brand_id');
             $table->index(['is_active', 'is_featured']);

@@ -13,6 +13,7 @@ class BrandFactory extends Factory
     public function definition(): array
     {
         $name = fake()->randomElement(['Sony', 'Canon', 'Fujifilm', 'Nikon', 'DJI', 'GoPro', 'Panasonic']);
+
         return [
             'name' => $name,
             'slug' => Str::slug($name),

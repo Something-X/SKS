@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable([
-    'booking_code', 'customer_name', 'customer_whatsapp', 'customer_email', 'notes', 
-    'pickup_time', 'start_date', 'end_date', 'total_days', 'subtotal', 'total_price', 
-    'payment_method', 'payment_status', 'booking_status', 'confirmed_at', 
-    'picked_up_at', 'returned_at', 'cancelled_at', 'cancellation_reason', 'qr_code_path'
+    'booking_code', 'customer_name', 'customer_whatsapp', 'customer_email', 'notes',
+    'pickup_time', 'start_date', 'end_date', 'total_days', 'subtotal', 'total_price',
+    'payment_method', 'payment_status', 'booking_status', 'confirmed_at',
+    'picked_up_at', 'returned_at', 'cancelled_at', 'cancellation_reason', 'qr_code_path',
 ])]
 class Booking extends Model
 {

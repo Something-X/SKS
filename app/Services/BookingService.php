@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Booking;
 use App\Models\BookingItem;
 use App\Models\Product;
-use App\Models\Setting;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -13,9 +12,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BookingService
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Generate unique booking code.
@@ -35,8 +32,8 @@ class BookingService
     /**
      * Create from cart data.
      *
-     * @param array<int, array<string, mixed>> $cartItems
-     * @param array<string, mixed> $customerData
+     * @param  array<int, array<string, mixed>>  $cartItems
+     * @param  array<string, mixed>  $customerData
      */
     public function createFromCart(array $cartItems, array $customerData): Booking
     {
@@ -86,12 +83,12 @@ class BookingService
             ->where(function ($query) use ($startDate, $endDate) {
                 $query->where(function ($q) use ($startDate, $endDate) {
                     $q->where('start_date', '<=', $endDate)
-                      ->where('end_date', '>=', $startDate);
+                        ->where('end_date', '>=', $startDate);
                 });
             })
             ->exists();
 
-        return !$overlappingBookings;
+        return ! $overlappingBookings;
     }
 
     /**
@@ -122,11 +119,11 @@ class BookingService
     {
         $code = $booking->booking_code;
         $path = "qrcodes/{$code}.png";
-        
+
         $qrCodeData = "Booking Code: {$code}\nCustomer: {$booking->customer_name}\nTotal: {$booking->total_amount}";
-        
+
         $fullDirectory = storage_path('app/public/qrcodes');
-        if (!file_exists($fullDirectory)) {
+        if (! file_exists($fullDirectory)) {
             mkdir($fullDirectory, 0755, true);
         }
 

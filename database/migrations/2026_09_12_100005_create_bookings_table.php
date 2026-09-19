@@ -31,7 +31,7 @@ return new class extends Migration
             $table->text('cancellation_reason')->nullable();
             $table->string('qr_code_path')->nullable();
             $table->timestamps();
-            
+
             $table->index('booking_code');
             $table->index('booking_status');
             $table->index(['start_date', 'end_date']);
